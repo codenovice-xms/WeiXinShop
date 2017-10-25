@@ -43,7 +43,9 @@
     <Compile Include="IBannerService.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="INoticeService.cs" />
+    <Compile Include="IPhotosService.cs" />
     <Compile Include="IProductService.cs" />
+    <Compile Include="IReviewService.cs" />
     <Compile Include="ISortService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

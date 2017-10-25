@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WeShop.EFModel.Notice>
+@{
+    ViewBag.Title = "公告";
+    Layout = "~/Views/_LayoutMaster.cshtml";
+}
+
+@section Style{}
+
+@section Script{}
+<!--ftop开始-->
+<div class="ftop">
+    <a class="back" onClick="javascript:history.back(-1);"><img src="/Content/images/icon_03.png"></a>
+    <h2>最新公告</h2>
+    <a class="comea">&nbsp;</a>
+    <div style="clear: both;"></div>
+</div>
+<!--ftop开始-->
+<div class="notice">
+    <ul>
+        @foreach (var notice in Model)
+        {
+            <li>
+                <a href="@Url.Action("Detail",new {notice.Id})">
+                    <h2><span>@notice.Title</span><i>@notice.ModiTime</i> @*公告长度 标题15字以下*@
+                    </h2>
+                    <p>@notice.Body.Substring(0, 15)……</p>  @*公告长度 详情15字以上*@
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+

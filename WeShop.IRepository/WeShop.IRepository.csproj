@@ -43,7 +43,9 @@
     <Compile Include="IBannerRepository.cs" />
     <Compile Include="IBaseRepository.cs" />
     <Compile Include="INoticeRepository.cs" />
+    <Compile Include="IPhotoRepository.cs" />
     <Compile Include="IProductRepository.cs" />
+    <Compile Include="IReviewRepository.cs" />
     <Compile Include="ISortRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

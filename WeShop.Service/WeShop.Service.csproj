@@ -43,8 +43,10 @@
     <Compile Include="BannerService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="NoticeService.cs" />
+    <Compile Include="PhotoService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewService.cs" />
     <Compile Include="SortService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +61,10 @@
     <ProjectReference Include="..\WeShop.IService\WeShop.IService.csproj">
       <Project>{8ed47094-25ad-46a1-b097-7c90ef1caa22}</Project>
       <Name>WeShop.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeShop.Repository\WeShop.Repository.csproj">
+      <Project>{E94C7040-14C8-478C-BE59-5995B322081C}</Project>
+      <Name>WeShop.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

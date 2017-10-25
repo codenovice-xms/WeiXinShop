@@ -11,7 +11,7 @@ namespace WeShop.Service
 {
     public class NoticeService : BaseService<Notice>,INoticeService
     {
-        public NoticeService(IBaseRepository<Notice> baseService) : base(baseService)
+        public NoticeService(INoticeRepository baseService) : base(baseService)
         {
         }
     }

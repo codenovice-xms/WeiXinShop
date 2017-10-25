@@ -264,6 +264,8 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\ProDetailsController.cs" />
     <Compile Include="Controllers\ProductListController.cs" />
     <Compile Include="Controllers\SortController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +273,7 @@
     </Compile>
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SortViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,8 +282,11 @@
     <Content Include="Views\_LayoutMaster.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_LayoutNav.cshtml" />
-    <Content Include="Views\Sort\Index.cshtml" />
     <Content Include="Views\ProductList\Index.cshtml" />
+    <Content Include="Views\Sort\Index.cshtml" />
+    <Content Include="Views\ProDetails\Index.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Notice\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

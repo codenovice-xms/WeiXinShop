@@ -11,7 +11,7 @@ namespace WeShop.Service
 {
     public class SortService : BaseService<Sort>,ISortService
     {
-        public SortService(IBaseRepository<Sort> baseService) : base(baseService)
+        public SortService(ISortRepository baseService) : base(baseService)
         {
         }
     }

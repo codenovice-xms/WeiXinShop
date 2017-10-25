@@ -8,10 +8,10 @@ namespace WeShop.Web.Models
 {
     public class HomeViewModel
     {
-        public  int NoticeNum { get; set; }
-        public  IEnumerable<Banner> Banners { get; set; }
-        public  IEnumerable<Notice> Notices { get; set; } 
-        public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<ProPhoto> ProPhotos { get; set; } 
+        public  int NoticeNum { get; set; }                     //公告数量
+        public  IEnumerable<Banner> Banners { get; set; }       //banner
+        public  IEnumerable<Notice> Notices { get; set; }       //公告
+        public IEnumerable<Product> Products { get; set; }      //商品
+        public IEnumerable<ProPhoto> ProPhotos { get; set; }    //商品图片
     }
 }

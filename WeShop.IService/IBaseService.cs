@@ -16,12 +16,14 @@ namespace WeShop.IService
         /// <param name="tEntity">实体模型</param>
         /// <returns></returns>
         bool Add(TEntity tEntity);
+
         /// <summary>
         /// 移除
         /// </summary>
         /// <param name="tEntity">实体模型</param>
         /// <returns></returns>
         bool Remove(TEntity tEntity);
+
         /// <summary>
         /// 更改
         /// </summary>
@@ -35,18 +37,21 @@ namespace WeShop.IService
         /// <param name="whereLambda"></param>
         /// <returns></returns>
         int GetCount(Func<TEntity, bool> whereLambda);
+
         /// <summary>
         /// 获取单个数据
         /// </summary>
         /// <param name="whereLambda"></param>
         /// <returns></returns>
         TEntity GetEntity(Func<TEntity, bool> whereLambda);
+
         /// <summary>
         /// 获取多个数据
         /// </summary>
         /// <param name="whereLambda"></param>
         /// <returns>实体</returns>
         IEnumerable<TEntity> GetEntities(Func<TEntity, bool> whereLambda);
+
         /// <summary>
         /// 分页
         /// </summary>

@@ -11,7 +11,7 @@ namespace WeShop.Service
 {
     public class ProductService : BaseService<Product>,IProductService
     {
-        public ProductService(IBaseRepository<Product> baseService) : base(baseService)
+        public ProductService(IProductRepository baseService) : base(baseService)
         {
         }
     }

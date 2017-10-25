@@ -10,12 +10,13 @@ namespace WeShop.Web.Controllers
 {
     public class ProductListController : Controller
     {
-        private IProductService ProductService { get; set; }
+        public IProductService ProductService { get; set; }
 
-        private ProductViewModel productViewModel = new ProductViewModel();
-        public ActionResult Index(int Code)
+        public ActionResult Index(int code)
         {
-            productViewModel.Products = ProductService.GetEntities(p => true);
+            ProductViewModel productViewModel = new ProductViewModel();
+
+            productViewModel.Products = ProductService.GetEntities(p =>p.Sorts.First().Code==code);
             return View(productViewModel);
         }
     }

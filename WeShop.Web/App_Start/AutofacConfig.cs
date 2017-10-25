@@ -15,7 +15,7 @@ namespace WeShop
         {
             // 1、创建一个容器配置对象
             var builder=new ContainerBuilder();
-            // 2、注册当前MVC应用里的所有控制器（自动注册，只需要给它提供 要注册的程序集，在这里注册的使自己）
+            // 2、注册当前MVC应用里的所有控制器（自动注册，只需要给它提供 要注册的程序集，在这里注册的是自己）
             // Assembly.GetExecutingAssembly() 就是获取当前运行中的程序的所有的类
             // PropertiesAutowired() 表示使用属性的方式进行 依赖注入
             builder.RegisterControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();

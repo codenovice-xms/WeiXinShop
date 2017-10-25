@@ -9,9 +9,9 @@ using WeShop.IService;
 
 namespace WeShop.Service
 {
-    public class BannerService: BaseService<Banner>,IBannerService
+    public class PhotoService :BaseService<ProPhoto> , IPhotosService
     {
-        public BannerService(IBannerRepository bannerRepository) : base(bannerRepository)
+        public PhotoService(IPhotoRepository photoRepository) : base(photoRepository)
         {
         }
     }
