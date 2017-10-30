@@ -8,42 +8,43 @@
 @section Script
 {
     <script>
-    var m=$(window).height()-98;
-    $(".fen-nav,.fen-box").css("height",m+"px");
+        var m = $(window).height() - 98;
+        $(".fen-nav, .fen-box").css("height", m + "px");
 
 
-    var $lii = $(".fenlei .fen-nav li");
-    $(".fenlei .fen-box .fenlist").hide();
-    $(".fenlei .fen-box .fenlist").first().show();
-    $lii.click(function() {
-        var n = $(this).index();
-        var h = $(this).height();
-        //alert(h)
-        var sunh = n * h - 1;
-        $(".fen-nav").animate({ "scrollTop": sunh + "px" }, 1000)
-
-
-        $(this).addClass("on").siblings().removeClass("on");
-        var indexx = $lii.index(this);
-        $('.fenlei .fen-box').animate({ scrollTop: '0px' }, 500);
-        $(".fenlei .fen-box .fff .fenlist").hide();
-        $(".fenlei .fen-box .fff .fenlist").eq(indexx).show();
-    });
-    var w=$(".fenli li img").width();
-    $(".fenli li img").height(w);
-    $(window).resize(function() {
-        var w = parseInt($(".fenli li img").width());
+        var $lii = $(".fenlei .fen-nav li");
+        $(".fenlei .fen-box .fenlist").hide();
+        $(".fenlei .fen-box .fenlist").first().show();
+        $lii.click(function() {
+            var n = $(this).index();
+            var h = $(this).height();
+            //alert(h)
+            var sunh = n * h - 1;
+            $(".fen-nav").animate({ "scrollTop": sunh + "px" }, 1000);
+            $(this).addClass("on").siblings().removeClass("on");
+            var indexx = $lii.index(this);
+            $('.fenlei .fen-box').animate({ scrollTop: '0px' }, 500);
+            $(".fenlei .fen-box .fff .fenlist").hide();
+            $(".fenlei .fen-box .fff .fenlist").eq(indexx).show();
+        });
+        var w = $(".fenli li img").width();
         $(".fenli li img").height(w);
-    });
+        $(window).resize(function() {
+            var w = parseInt($(".fenli li img").width());
+            $(".fenli li img").height(w);
+        });
 
-</script>
+        $(function() {
+          
+        });
+    </script>
 }
 <!--ftop开始-->
 <div class="ftop">
     <div class="index_search index_search01" style="padding-left: 10px;">
-        <div style="left: 0px; width: 100%;" onclick="document.location = '#'">
-            <input type="text" placeholder="请输入您要搜索的产品">
-            <input type="button" value=" ">
+        <div style="left: 0px; width: 100%;">
+            <input onclick="document.location = '@Url.Action("Index", "Search")'" type="text" placeholder="请输入您要搜索的产品">
+            <input type="button" value="">
         </div>
     </div>
     <div style="clear: both;"></div>
@@ -55,7 +56,7 @@
             @foreach (var sort in Model.Sorts)
             {
                 <a href="@Url.Action("Index", new {code = @sort.Code})">
-                    <li class="">@sort.Name</li>
+                    <li name="mav" class="">@sort.Name</li>
                 </a>
             }
         </ul>
@@ -67,10 +68,10 @@
                     @foreach (var two in Model.TwoSorts)
                     {
                         <li>
-                            <a class="imga" href="@Url.Action("Index","ProductList",new { @two.Code})">
+                            <a class="imga" href="@Url.Action("Index", "ProductList", new {@two.Code})">
                                 <img src="@two.Image">
                             </a>
-                            <a class="txta" href="@Url.Action("Index","ProductList",new { @two.Code})">
+                            <a class="txta" href="@Url.Action("Index", "ProductList", new {@two.Code})">
                                 <span>@two.Name</span>
                                 <i>@two.Intro</i>
                             </a>

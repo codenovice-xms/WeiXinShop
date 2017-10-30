@@ -3,10 +3,24 @@
     ViewBag.Title = "公告详情";
     Layout = "~/Views/_LayoutMaster.cshtml";
 }
-
+@section Style
+{
+    <style>
+    .left {
+        color: #000;
+        cursor: pointer;
+        display: block;
+        float: left;
+        font-size: 14px;
+        line-height: 40px;
+        text-align: right;
+        width: 18%;
+    }
+</style>
+}
 <!--ftop开始-->
 <div class="ftop">
-    <a class="back" onClick="javascript:history.back(-1);"><img src="/Content/images/icon_03.png"></a>
+    <a class="left">&nbsp;</a>
     <h2>公告详情</h2>
     <a class="comea">&nbsp;</a>
     <div style="clear: both;"></div>

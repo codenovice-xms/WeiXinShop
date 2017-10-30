@@ -11,7 +11,7 @@ namespace WeShop.Service
 {
     public class ReviewService : BaseService<ProReview>,IReviewService
     {
-        public ReviewService(IReviewRepository reuwRepository) : base(reuwRepository)
+        public ReviewService(IReviewRepository reviewRepository) : base(reviewRepository)
         {
         }
     }

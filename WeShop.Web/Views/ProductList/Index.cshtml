@@ -20,8 +20,8 @@
 <div class="ftop">
     <div class="index_search index_search01"style="padding-left: 10px;">
         <div>
-            <input type="text" placeholder="请输入您要搜索的产品">
-            <input class="dw" onclick="document.location = '#'" type="button" value="">  @*链接是搜索页*@
+            <input onclick="document.location = '@Url.Action("Index","Search")'" type="text"   placeholder="请输入您要搜索的产品">
+            <input class="dw" type="button" value="">  @*链接是搜索页*@
         </div>
     </div>
     <div style="clear: both;"></div>

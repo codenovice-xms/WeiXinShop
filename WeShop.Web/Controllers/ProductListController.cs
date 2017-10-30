@@ -19,5 +19,12 @@ namespace WeShop.Web.Controllers
             productViewModel.Products = ProductService.GetEntities(p =>p.Sorts.First().Code==code);
             return View(productViewModel);
         }
+
+        public ActionResult Search(string Key)
+        {
+            Key = Request["key"];
+            var Products = ProductService.GetEntities(p => p.Name.Contains(Key)  ||p.Intro.Contains(Key));
+            return View(Products);
+        }
     }
 }

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WeShop.EFModel.Product>
+@{
+    Layout = "~/Views/_LayoutMaster.cshtml";
+}
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .search_list ul li img {
+            border: 4px solid #ddd;
+            border-radius: 50%;
+        }
+
+            .search_list ul li img:hover {
+                border: 4px solid #666;
+            }
+    </style>
+</head>
+<body>
+    <!--ftop开始-->
+    <div class="ftop">
+        <div class="index_search index_search01" style="padding-left: 10px;">
+            <div>
+                <input onclick="document.location = '@Url.Action("Index","Search")'" type="text" placeholder="请输入您要搜索的产品">
+                <input class="dw" type="button" value="">  @*链接是搜索页*@
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <!--ftop开始-->
+    <div class="search_list">
+        <ul>
+            @foreach (var product in Model)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "ProDetails", new {@product.Code})">
+                        <img src="@product.ProPhotoes.First().ImgUrl.Split(';')[0]">
+                        <div class="search_item">
+                            <p>@product.Intro</p>
+                            <h2>
+                                <i>￥</i><b>@product.SellPrice</b>
+                            </h2>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <script>
+    $(".search_list ul li a img").each(function() {
+        var w = $(this).width();
+        $(this).height(w + "px");
+    });
+    </script>
+
+
+</body>
+</html>
