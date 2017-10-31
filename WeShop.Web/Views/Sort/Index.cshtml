@@ -40,7 +40,7 @@
         $(".car").removeClass("current");
     </script>
 }
-<!--ftop开始-->
+    <!--ftop开始-->
 <div class="ftop">
     <div class="index_search index_search01" style="padding-left: 10px;">
         <div style="left: 0px; width: 100%;">
@@ -57,7 +57,7 @@
             @foreach (var sort in Model.Sorts)
             {
                 <a href="@Url.Action("Index", new {code = @sort.Code})">
-                    <li name="mav" class="@sort.Code">@sort.Name</li>
+                    <li name="nav" class="@sort.Code">@sort.Name</li>
                 </a>
             }
         </ul>
