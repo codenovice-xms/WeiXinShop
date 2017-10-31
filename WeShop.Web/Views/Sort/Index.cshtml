@@ -1,6 +1,6 @@
 ﻿@model WeShop.Web.Models.SortViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "分类";
     Layout = "~/Views/_LayoutNav.cshtml";
 }
 @section Style
@@ -10,7 +10,6 @@
     <script>
         var m = $(window).height() - 98;
         $(".fen-nav, .fen-box").css("height", m + "px");
-
 
         var $lii = $(".fenlei .fen-nav li");
         $(".fenlei .fen-box .fenlist").hide();
@@ -33,10 +32,12 @@
             var w = parseInt($(".fenli li img").width());
             $(".fenli li img").height(w);
         });
-
-        $(function() {
-          
-        });
+    </script>
+    <script>
+        $(".sort").addClass("current");
+        $(".my").removeClass("current");
+        $(".home").removeClass("current");
+        $(".car").removeClass("current");
     </script>
 }
 <!--ftop开始-->
@@ -56,7 +57,7 @@
             @foreach (var sort in Model.Sorts)
             {
                 <a href="@Url.Action("Index", new {code = @sort.Code})">
-                    <li name="mav" class="">@sort.Name</li>
+                    <li name="mav" class="@sort.Code">@sort.Name</li>
                 </a>
             }
         </ul>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using WeShop.EFModel;
 
 namespace WeShop.Web.Models
@@ -13,5 +14,6 @@ namespace WeShop.Web.Models
         public  IEnumerable<Notice> Notices { get; set; }       //公告
         public IEnumerable<Product> Products { get; set; }      //商品
         public IEnumerable<ProPhoto> ProPhotos { get; set; }    //商品图片
+        public OAuthUserInfo UserInfo { get; set; }             //用户信息
     }
 }

@@ -52,9 +52,11 @@
 
 <div class="index_main">
     <p class="index_mtitle">
-        <a class="on" href="#">热销</a> <a href="#">推荐</a> <a href="#">限时</a>
+        <a class="hot on" href="@Url.Action("Index","Home",new {type=1})">热销</a>
+        <a  class="groom" href="@Url.Action("Index","Home",new {type=2})">推荐</a> 
+        <a  class="groom" href="@Url.Action("Index","Home",new {type=3})">限时</a>
     </p>
-    <ul>
+    <ull>
         @foreach (var product in Model.Products)
         {
             <li>
@@ -80,7 +82,7 @@
                 </div>
             </li>
         }
-    </ul>
+    </ull>
 </div>
 <div class="index_icon">
     <p>
@@ -108,4 +110,16 @@
             direction: 'vertical'
         });
     </script>
+    <script>
+        $(".home").addClass("current");
+        $(".my").removeClass("current");
+        $(".sort").removeClass("current");
+        $(".car").removeClass("current");
+    </script>
+<script>
+        $(".home").addClass("current");
+        $(".my").removeClass("current");
+        $(".sort").removeClass("current");
+        $(".car").removeClass("current");
+</script>
 }

@@ -266,7 +266,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\jquery.fullscreenslides.js" />
     <Content Include="Scripts\swiper.min.js" />
     <Content Include="Scripts\timer.js" />
@@ -279,10 +283,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\ProDetailsController.cs" />
     <Compile Include="Controllers\ProductListController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SortController.cs" />
+    <Compile Include="Filters\OAuthFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -303,6 +309,9 @@
     <Content Include="Views\Notice\Detail.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\ProductList\Search.cshtml" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Views\OAuth\JsSdkConfig.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -312,7 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeShop.EFModel\WeShop.EFModel.csproj">
@@ -339,7 +347,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52687</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52687/</IISUrl>
+          <IISUrl>http://127.0.0.1:8081/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
