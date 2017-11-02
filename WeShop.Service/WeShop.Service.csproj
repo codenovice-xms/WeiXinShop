@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BannerService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="CustomerService.cs" />
     <Compile Include="NoticeService.cs" />
     <Compile Include="PhotoService.cs" />
     <Compile Include="ProductService.cs" />

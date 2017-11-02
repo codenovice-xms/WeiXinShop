@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BannerRepository.cs" />
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="CustomerRepository.cs" />
     <Compile Include="DbContextFactory.cs" />
     <Compile Include="NoticeRepository.cs" />
     <Compile Include="PhotoRepository.cs" />

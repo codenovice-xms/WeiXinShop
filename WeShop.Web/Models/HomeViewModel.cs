@@ -14,6 +14,5 @@ namespace WeShop.Web.Models
         public  IEnumerable<Notice> Notices { get; set; }       //公告
         public IEnumerable<Product> Products { get; set; }      //商品
         public IEnumerable<ProPhoto> ProPhotos { get; set; }    //商品图片
-        public OAuthUserInfo UserInfo { get; set; }             //用户信息
     }
 }

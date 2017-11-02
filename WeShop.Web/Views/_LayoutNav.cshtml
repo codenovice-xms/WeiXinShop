@@ -6,6 +6,11 @@
 {
     @RenderSection("Style", false)
     <link href="~/Content/css/index.css" type="text/css" rel="stylesheet">
+<style>
+    .top {
+        margin-bottom: 55px;
+    }
+</style>
 }
 
 @section Script
@@ -36,7 +41,7 @@
         <span><img src="~/Content/images/navicon_48.png" class="img1"><img src="~/Content/images/navicon_30.png" class="img2"></span>
         <i>分类</i>
     </a>
-    <a href="#" class="car">
+    <a href="@Url.Action("index","ShopCart")" class="car">
         <span><img src="~/Content/images/navicon_50.png" class="img1"><img src="~/Content/images/navicon_32.png" class="img2"><em>@ViewBag.CartProNum</em></span>
         <i>购物车</i>
     </a>

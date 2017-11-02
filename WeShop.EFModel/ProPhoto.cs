@@ -20,7 +20,7 @@ namespace WeShop.EFModel
         public string No { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(500)]
         public string ImgUrl { get; set; }
 
         public virtual Product Product { get; set; }

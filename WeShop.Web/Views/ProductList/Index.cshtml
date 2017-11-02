@@ -28,6 +28,7 @@
 </div>
 <!--ftop开始-->
 <div class="search_list">
+    <p><a class="on"><span>综合</span></a><a><span>销量</span></a><a><span>评价</span></a><a><span class="bg">价格</span></a></p>
     <ul>
         @foreach (var product in Model.Products)
         {
@@ -35,7 +36,7 @@
                 <a href="@Url.Action("Index", "ProDetails", new {@product.Code})">
                     <img src="@product.ProPhotoes.First().ImgUrl.Split(';')[0]">
                     <div class="search_item">
-                        <p>@product.Intro</p>
+                        <p>@product.Name</p>
                         <h2>
                             <i>￥</i><b>@product.SellPrice</b>
                         </h2>

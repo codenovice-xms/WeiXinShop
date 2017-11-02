@@ -23,6 +23,9 @@ namespace WeShop.EFModel
         [StringLength(50)]
         public string OpenId { get; set; }
 
+        [StringLength(500)]
+        public string HeadImgurl { get; set; }
+
         [StringLength(11)]
         public string Phone { get; set; }
 

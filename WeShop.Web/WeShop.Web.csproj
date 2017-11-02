@@ -127,14 +127,55 @@
     <Content Include="Content\css\fullscreenstyle.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\swiper.min.css" />
+    <Content Include="Content\images\0124f2bfbd3e2cc69a54fa493e77bbb9.jpg" />
+    <Content Include="Content\images\0bfaedf4983c44d193a093fe1afe1def.jpg" />
+    <Content Include="Content\images\14d30a9e2bb9aedf56677c4ba1a2ccb9.jpg" />
+    <Content Include="Content\images\165e2d916493809d4e73e4feb5efef7f.jpg" />
+    <Content Include="Content\images\18f263d2b251e90cecaec2e782e8fb95.jpg" />
+    <Content Include="Content\images\20170324175914114.jpg" />
+    <Content Include="Content\images\20170324180159062.jpg" />
+    <Content Include="Content\images\20170327104427723.jpg" />
+    <Content Include="Content\images\2317e98fd8fa1f6b3a9340b031dba2f3.jpg" />
+    <Content Include="Content\images\24c0b7490346590fb8524f12410bd3d2.jpg" />
+    <Content Include="Content\images\24ca878359b4c7ca3964e5fa5cc4c024.jpg" />
+    <Content Include="Content\images\2aa97eeb56930632bb00ff592f01a48f.jpg" />
+    <Content Include="Content\images\2dd8de8ef47b457f43c37e793002d0df.jpg" />
+    <Content Include="Content\images\35a2240b963be504d79230e4d070a8ee.jpg" />
+    <Content Include="Content\images\48d8b38c3033a7f5ed656f31821d0d00.jpg" />
+    <Content Include="Content\images\4fc7e61ab89d714ad40ac5a1436738c8.jpg" />
+    <Content Include="Content\images\59b9e0d5Nab4907a0.jpg" />
+    <Content Include="Content\images\59b9e0d6N425598c3.jpg" />
+    <Content Include="Content\images\59b9e0d6N6065560d.jpg" />
+    <Content Include="Content\images\59b9e0d7Nca35767b.jpg" />
+    <Content Include="Content\images\59b9e0d7Ndcc2f4eb.jpg" />
+    <Content Include="Content\images\59b9e0d8N56bc6d4b.jpg" />
+    <Content Include="Content\images\59b9e0d9N1a05cf84.jpg" />
+    <Content Include="Content\images\59b9e0d9N798ed14a.jpg" />
+    <Content Include="Content\images\59ff225e2aa89cee24d35b964faf9bc7.jpg" />
+    <Content Include="Content\images\5b85d5918f96364ce0ee76362c064c4f.jpg" />
+    <Content Include="Content\images\5e3c76e064a4bdb51755d4f795bf4119.jpg" />
+    <Content Include="Content\images\6f58b5b04280ec306e6951a1a176474e.jpg" />
+    <Content Include="Content\images\740979e0823ed47240c12a8d9b435dad.jpg" />
+    <Content Include="Content\images\7e8c055748d8c7e8745d60dc29a4b2d8.jpg" />
+    <Content Include="Content\images\82c132a2bd4c42aef17f64313d22f202.jpg" />
+    <Content Include="Content\images\85fd8d266c6501074fb038fa40cbd40b.jpg" />
+    <Content Include="Content\images\887e314e8dbef54aaaf95b74cf40c078.jpg" />
+    <Content Include="Content\images\8a924577608bd6cb81a2f29e92f05b44.jpg" />
+    <Content Include="Content\images\8ead8ea061cac88282dbdd0fc9eb9aea.jpg" />
+    <Content Include="Content\images\8ff789f145f6655a3d8e123e578eb4e1.jpg" />
+    <Content Include="Content\images\99ff121a44ba68285ad9f6d412490d4d.jpg" />
+    <Content Include="Content\images\9cf5ec0e064e0b9c0d2f541330bdb652.jpg" />
+    <Content Include="Content\images\a2d7e65c5648409532e7ba0f9057a317.jpg" />
+    <Content Include="Content\images\a73dfbccacad9ab86f09363e8b2a7480.jpg" />
     <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\c379db98ff9db42e09bfce6a0d4ebd1c.jpg" />
+    <Content Include="Content\images\c538aa973d329ee2220b117ff4ae519a.jpg" />
     <Content Include="Content\images\car.jpg" />
     <Content Include="Content\images\centdizhi_03.png" />
     <Content Include="Content\images\centdizhi_07.png" />
     <Content Include="Content\images\centdizhi_10.png" />
     <Content Include="Content\images\centerbg_01.jpg" />
     <Content Include="Content\images\centericon_03.png" />
-    <Content Include="Content\images\centericon_06.png" />
     <Content Include="Content\images\centericon_11.png" />
     <Content Include="Content\images\centericon_14.png" />
     <Content Include="Content\images\centericon_19.png" />
@@ -156,9 +197,6 @@
     <Content Include="Content\images\centermingxi_11.png" />
     <Content Include="Content\images\centerorder_03.png" />
     <Content Include="Content\images\centerorder_07.png" />
-    <Content Include="Content\images\centerorder_11.png" />
-    <Content Include="Content\images\centerorder_14.png" />
-    <Content Include="Content\images\centerorder_16.png" />
     <Content Include="Content\images\centerset_03.png" />
     <Content Include="Content\images\centerset_07.png" />
     <Content Include="Content\images\centerset_11.png" />
@@ -173,10 +211,18 @@
     <Content Include="Content\images\centshare_02.png" />
     <Content Include="Content\images\centshare_03.png" />
     <Content Include="Content\images\centshare_06.png" />
+    <Content Include="Content\images\cf27c2f88860fd686798f46564402c23.jpg" />
+    <Content Include="Content\images\d7e71dc9682a7ad6f0ad6f65d44ee70f.jpg" />
+    <Content Include="Content\images\d93528ca347edc9a952075a0d62645ed.jpg" />
+    <Content Include="Content\images\d9d1d04a3e96b79cc31e4fd5598cf6ef.jpg" />
     <Content Include="Content\images\dengfahuo_03.png" />
     <Content Include="Content\images\dengfukuan_03.png" />
     <Content Include="Content\images\dengfukuan_07.png" />
     <Content Include="Content\images\dengfukuan_11.png" />
+    <Content Include="Content\images\df0d47f24d01101d81ecc8026c9102f0.jpg" />
+    <Content Include="Content\images\e779f07c1a523df15162cafaad15b84e.jpg" />
+    <Content Include="Content\images\e7b612b5afeb6c3a58676ca4b2dad005.jpg" />
+    <Content Include="Content\images\e967a43257f1b81f08c1f7807c9f101b.jpg" />
     <Content Include="Content\images\enter.png" />
     <Content Include="Content\images\icon_003.png" />
     <Content Include="Content\images\icon_01.png" />
@@ -221,21 +267,16 @@
     <Content Include="Content\images\img_01.jpg" />
     <Content Include="Content\images\img_010.jpg" />
     <Content Include="Content\images\img_011.jpg" />
-    <Content Include="Content\images\img_012.jpg" />
     <Content Include="Content\images\img_013.jpg" />
     <Content Include="Content\images\img_014.jpg" />
     <Content Include="Content\images\img_015.jpg" />
     <Content Include="Content\images\img_02.jpg" />
-    <Content Include="Content\images\img_03.jpg" />
     <Content Include="Content\images\img_04.jpg" />
     <Content Include="Content\images\img_05.jpg" />
     <Content Include="Content\images\img_06.jpg" />
     <Content Include="Content\images\img_07.jpg" />
     <Content Include="Content\images\img_08.jpg" />
     <Content Include="Content\images\img_09.jpg" />
-    <Content Include="Content\images\index_banner.jpg" />
-    <Content Include="Content\images\index_img01.jpg" />
-    <Content Include="Content\images\index_img02.jpg" />
     <Content Include="Content\images\index_img03.jpg" />
     <Content Include="Content\images\line.jpg" />
     <Content Include="Content\images\logo.png" />
@@ -263,6 +304,20 @@
     <Content Include="Content\images\sharetip_06.png" />
     <Content Include="Content\images\sharetip_09.png" />
     <Content Include="Content\images\sharetip_13.png" />
+    <Content Include="Content\images\佛牌.png" />
+    <Content Include="Content\images\佛珠.png" />
+    <Content Include="Content\images\印章.png" />
+    <Content Include="Content\images\吊坠.png" />
+    <Content Include="Content\images\戒指.png" />
+    <Content Include="Content\images\手镯手链.png" />
+    <Content Include="Content\images\摆件.png" />
+    <Content Include="Content\images\耳饰.png" />
+    <Content Include="Content\images\胸针.png" />
+    <Content Include="Content\images\脚链.png" />
+    <Content Include="Content\images\蝴蝶吊坠.jpg" />
+    <Content Include="Content\images\裸钻.png" />
+    <Content Include="Content\images\转运珠.png" />
+    <Content Include="Content\images\项链.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\index.js" />
@@ -287,6 +342,7 @@
     <Compile Include="Controllers\ProDetailsController.cs" />
     <Compile Include="Controllers\ProductListController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ShopCartController.cs" />
     <Compile Include="Controllers\SortController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\OAuthFilterAttribute.cs" />
@@ -296,6 +352,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\SortViewModel.cs" />
+    <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +371,7 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Views\OAuth\JsSdkConfig.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\ShopCart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -332,6 +390,10 @@
     <ProjectReference Include="..\WeShop.IService\WeShop.IService.csproj">
       <Project>{8ed47094-25ad-46a1-b097-7c90ef1caa22}</Project>
       <Name>WeShop.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeShop.Service\WeShop.Service.csproj">
+      <Project>{08061908-4393-4132-BC43-D5B0E51051FD}</Project>
+      <Name>WeShop.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

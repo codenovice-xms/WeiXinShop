@@ -196,7 +196,7 @@
 .pay label{ float:left; margin-top:12px; padding-left:15px;}
 .pay label span.on{ background-image:url(../images/icon_032.png)}
 .pay label input{ display:none;}
-.pay label span{ background-image:url(../images/icon_031.png); background-repeat:no-repeat; background-position:left center; padding-left:22px; background-size:16px; font-size:14px; font-weight:bold;}
+.pay label span{ background-image:url(../images/icon_031.png); background-repeat:no-repeat; background-position:left center; padding-left:22px; background-size:16px; font-size:16px; font-weight:bold;}
 .pay .pay_right{ float:right; overflow:hidden;}
 .pay .pay_right p{ float:left;font-weight:bold; margin-right:10px; margin-top:5px;}
 .pay .pay_right p span{ display:block; font-size:14px; }

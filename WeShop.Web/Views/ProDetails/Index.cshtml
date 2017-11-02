@@ -1,162 +1,166 @@
 ﻿@model WeShop.Web.Models.ProductViewModel
 @{
+    ViewBag.Title = "商品详情";
     Layout = "~/Views/_LayoutMaster.cshtml";
 }
 
-<!DOCTYPE html>
+@section Style{
+    <link href="~/Content/css/swiper.min.css" type="text/css" rel="stylesheet">
+    <link href="~/Content/css/fullscreenstyle.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .comea {
+            display: block;
+            width: 18%;
+            float: right;
+            text-align: right;
+            font-size: 14px;
+            color: #000;
+            line-height: 20px;
+            cursor: pointer;
+        }
+    </style>
+}
 
-<html>
-<head>
-    <title>Index</title>
-    @section Style{
-        <link href="~/Content/css/swiper.min.css" type="text/css" rel="stylesheet">
-        <link href="~/Content/css/fullscreenstyle.css" type="text/css" rel="stylesheet"/>
-    }
+@section Script
+{
+    <script src="~/Scripts/timer.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fullscreenslides.js"></script>
+    <script>
+        $(function() {
+            $(".timer").timerInit();
+        });
 
-    @section Script
-    {
-        <script src="~/Scripts/timer.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.fullscreenslides.js"></script>
-        <script>
-            $(function() {
-                $(".timer").timerInit();
-            });
-
-            $(document).scroll(function() {
-                var nowtop = $(document).scrollTop();
-                var nowtopa = $(".modularbox .modular").length;
-                var aArray = {}; //定义一个数组
-                for (var i = 0; i < nowtopa; i++) {
-                    //aArray[i] = $(".tripdays").eq(i).offset().top;
-                    gh = $(".modular").eq(i).offset().top;
-                    gx = $(".modular").eq(i).height();
-                    if (nowtop > (gh - 220) && nowtop < (gh + gx - 220)) {
-                        $("#box a.linka").removeClass('on');
-                        $("#box a.linka").eq(i).addClass('on');
-                    }
+        $(document).scroll(function() {
+            var nowtop = $(document).scrollTop();
+            var nowtopa = $(".modularbox .modular").length;
+            var aArray = {}; //定义一个数组
+            for (var i = 0; i < nowtopa; i++) {
+                //aArray[i] = $(".tripdays").eq(i).offset().top;
+                gh = $(".modular").eq(i).offset().top;
+                gx = $(".modular").eq(i).height();
+                if (nowtop > (gh - 220) && nowtop < (gh + gx - 220)) {
+                    $("#box a.linka").removeClass('on');
+                    $("#box a.linka").eq(i).addClass('on');
                 }
-            });
+            }
+        });
 
-            var swiper1 = new Swiper('.product_details', {
-                slidesPerView: 1.5,
-                paginationClickable: true,
-                spaceBetween: 30,
-                freeMode: true
-            });
+        var swiper1 = new Swiper('.product_details', {
+            slidesPerView: 1.5,
+            paginationClickable: true,
+            spaceBetween: 30,
+            freeMode: true
+        });
 
-            $(function() {
-                var jian = $(".jian");
-                var jia = $(".jia");
-                var kunchun = 10; //当库存不足时，可以提醒用户。
-                jia.click(function() {
-                    var n = $(this).siblings("input").val();
-                    n++;
-                    if (n > kunchun) {
-                        alert("库存不足啦!");
-                        $(this).siblings("input").val(kunchun - 1);
-                        return false;
-                    }
-                    $(this).siblings("input").val(n);
+        $(function() {
+            var jian = $(".jian");
+            var jia = $(".jia");
+            var kunchun = 10; //当库存不足时，可以提醒用户。
+            jia.click(function() {
+                var n = $(this).siblings("input").val();
+                n++;
+                if (n > kunchun) {
+                    alert("库存不足啦!");
+                    $(this).siblings("input").val(kunchun - 1);
                     return false;
-                });
-                jian.click(function() {
-                    var n = $(this).siblings("input").val();
-                    n--;
-                    if (n < 1) {
-                        $(this).siblings("input").val(n + 1);
-                        return false;
-                    }
-                    $(this).siblings("input").val(n);
-                    return false;
-                });
-            });
-
-
-            /****窗口滚动****/
-            window.onscroll = function() {
-                var t = document.documentElement.scrollTop || document.body.scrollTop;
-                if (t > 350) {
-                    $("#box").show();
-                } else {
-                    $("#box").hide();
                 }
-            };
+                $(this).siblings("input").val(n);
+                return false;
+            });
+            jian.click(function() {
+                var n = $(this).siblings("input").val();
+                n--;
+                if (n < 1) {
+                    $(this).siblings("input").val(n + 1);
+                    return false;
+                }
+                $(this).siblings("input").val(n);
+                return false;
+            });
+        });
 
-            $(function() {
-                $("#box a.linka").each(function(n) {
-                    $(this).on("click", function() {
-                        //获得当前第N个div距页面顶部的距离
-                        var a = $(".modular").eq(n).offset().top;
-                        var b = a - 50;
-                        $('html, body').animate({ scrollTop: b }, 800);
-                    });
+
+        /****窗口滚动****/
+        window.onscroll = function() {
+            var t = document.documentElement.scrollTop || document.body.scrollTop;
+            if (t > 350) {
+                $("#box").show();
+            } else {
+                $("#box").hide();
+            }
+        };
+
+        $(function() {
+            $("#box a.linka").each(function(n) {
+                $(this).on("click", function() {
+                    //获得当前第N个div距页面顶部的距离
+                    var a = $(".modular").eq(n).offset().top;
+                    var b = a - 50;
+                    $('html, body').animate({ scrollTop: b }, 800);
                 });
             });
-            $(function() {
-                $(".ftop .comea").click(function() {
-                    $("html, body").css({ "overflow": "hidden" });
-                    $(".sharetip").fadeIn();
-                });
-                $(".sharetip a").click(function() {
-                    $("html, body").css({ "overflow": "auto" });
-                    $(".sharetip").fadeOut();
-                });
+        });
+        $(function() {
+            $(".comea").click(function() {
+                $("html, body").css({ "overflow": "hidden" });
+                $(".sharetip").fadeIn();
             });
+            $(".sharetip a").click(function() {
+                $("html, body").css({ "overflow": "auto" });
+                $(".sharetip").fadeOut();
+            });
+        });
 
-            $(function() {
-                $('.image img').fullscreenslides();
-                var $container = $('#fullscreenSlideshowContainer');
-                $container.bind("init", function() {
-                        $container
-                            .append('<div class="ui" id="fs-close">&times;</div>')
-                            .append('<div class="ui" id="fs-loader">Loading...</div>')
-                            .append('<div class="ui" id="fs-prev">&lt;</div>')
-                            .append('<div class="ui" id="fs-next">&gt;</div>')
-                            .append('<div class="ui" id="fs-caption"><span></span></div>');
-                        $('#fs-prev').click(function() {
-                            $container.trigger("prevSlide");
-                        });
-
-                        $('#fs-next').click(function() {
-                            $container.trigger("nextSlide");
-                        });
-
-                        $('#fs-close').click(function() {
-                            $container.trigger("close");
-                        });
-
-                    })
-                    .bind("startLoading", function() {
-                        $('#fs-loader').show();
-                    })
-                    .bind("stopLoading", function() {
-                        $('#fs-loader').hide();
-                    })
-                    .bind("startOfSlide", function(event, slide) {
-
-                        $('#fs-caption span').text(slide.title);
-                        $('#fs-caption').show();
-                    })
-                    .bind("endOfSlide", function(event, slide) {
-                        $('#fs-caption').hide();
+        $(function() {
+            $('.image img').fullscreenslides();
+            var $container = $('#fullscreenSlideshowContainer');
+            $container.bind("init", function() {
+                    $container
+                        .append('<div class="ui" id="fs-close">&times;</div>')
+                        .append('<div class="ui" id="fs-loader">Loading...</div>')
+                        .append('<div class="ui" id="fs-prev">&lt;</div>')
+                        .append('<div class="ui" id="fs-next">&gt;</div>')
+                        .append('<div class="ui" id="fs-caption"><span></span></div>');
+                    $('#fs-prev').click(function() {
+                        $container.trigger("prevSlide");
                     });
 
-            });
-        </script>
-    }
+                    $('#fs-next').click(function() {
+                        $container.trigger("nextSlide");
+                    });
 
-</head>
-<body>
-<!--ftop开始-->
+                    $('#fs-close').click(function() {
+                        $container.trigger("close");
+                    });
+
+                })
+                .bind("startLoading", function() {
+                    $('#fs-loader').show();
+                })
+                .bind("stopLoading", function() {
+                    $('#fs-loader').hide();
+                })
+                .bind("startOfSlide", function(event, slide) {
+
+                    $('#fs-caption span').text(slide.title);
+                    $('#fs-caption').show();
+                })
+                .bind("endOfSlide", function(event, slide) {
+                    $('#fs-caption').hide();
+                });
+
+        });
+    </script>
+}
+@*<!--ftop开始-->
 <div class="ftop">
     <a class="back" onClick="javascript:history.back(-1);">
-        <img  src="/Content/images/icon_03.png">
+        <img src="/Content/images/icon_03.png">
     </a>
-    <h2>产品详情</h2>
     <a style="color: #000" class="comea">分享有礼</a>
     <div style="clear: both;"></div>
 </div>
-<!--ftop开始-->
+<!--ftop开始-->*@
 
 <!---banner start--->
 <div class="product_box">
@@ -177,45 +181,32 @@
     </div>
     <div class="pro_text">
         <h2>
-            <p>特级云南冬虫夏草冬虫夏草又名虫草冬虫夏草又名虫草</p>
+            <p>@Model.Products.First().Name</p>
             <span><img  src="/Content/images/icon_06.png"><img  src="/Content/images/icon_06.png"><img  src="/Content/images/icon_06.png"><img  src="/Content/images/icon_06.png"><img  src="/Content/images/icon_07.png"></span>
         </h2>
         <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
         <div class="pro_det">
             <h3>
-                <i>￥</i><b>188.00</b><span>特级</span><span>甄选</span></h3>
+                <i>￥</i><b>188.00</b>@*<span>特级</span><span>甄选</span>*@ </h3><a style="color: #000" class="comea">分享有礼</a>
             <p>
-                <span>库存：616 </span><i></i></p>
+                <span>库存：616 </span><i></i>
+            </p>
         </div>
     </div>
 </div>
 <!---banner over--->
 <div class="pro_standard">
     <h2>
-        <span>选择商品规格/口味</span><img  src="/Content/images/icon_015.png">
+        <span>选择商品规格/口味</span><img src="/Content/images/icon_015.png">
     </h2>
     <div class="pro_stand">
         <dl>
             <dt>食品口味</dt>
             <dd>原味</dd>
-            <dd>奶油味</dd>
-            <dd>碳烤味</dd>
-            <dd>五香味</dd>
-            <dd>香辣味</dd>
-            <dd>原味</dd>
-            <dd>原味</dd>
-            <dd>奶油味</dd>
-            <dd>碳烤味</dd>
-            <dd>五香味</dd>
-            <dd>香辣味</dd>
         </dl>
         <dl>
             <dt>规格</dt>
             <dd>原味</dd>
-            <dd>奶油味</dd>
-            <dd>碳烤味</dd>
-            <dd>五香味</dd>
-            <dd>香辣味</dd>
         </dl>
     </div>
     <div class="shu">
@@ -224,7 +215,7 @@
         <h2>
             <span>商品描述</span></h2>
         <div class="miaoshu">
-            冬虫夏草为虫体与菌座相连而成，全长9～12厘米。虫体如三眠老蚕，长约3～6厘米，粗约0.4～0.7厘米。外表呈深黄色，粗糙，背部有多数横皱纹，腹面有足8对，位于虫体中部的4对明显易见。
+           @Html.Raw(Model.Products.First().Detail)
         </div>
     </div>
 </div>
@@ -249,7 +240,7 @@
     <h2>
         <span>更多图片</span></h2>
     <div class="tu_pian">
-        <img  src="/Content/images/img_04.jpg"><img  src="/Content/images/img_07.jpg"><img  src="/Content/images/img_08.jpg">
+        <img src="/Content/images/img_04.jpg"><img src="/Content/images/img_07.jpg"><img src="/Content/images/img_08.jpg">
     </div>
 </div>
 <div class="pro_description modular">
@@ -320,11 +311,9 @@
 
 <!--提醒分享-->
 <div class="sharetip">
-    <img  src="/Content/images/sharetip_06.png" alt="">
+    <img src="/Content/images/sharetip_06.png" alt="">
     <a>
-        <img  src="/Content/images/sharetip_09.png" alt="">
+        <img src="/Content/images/sharetip_09.png" alt="">
     </a>
 </div>
 <!--提醒分享-->
-</body>
-</html>
