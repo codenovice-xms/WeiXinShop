@@ -58,6 +58,7 @@
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewRepository.cs" />
+    <Compile Include="ShopCarRepository.cs" />
     <Compile Include="SortRepository.cs" />
   </ItemGroup>
   <ItemGroup>

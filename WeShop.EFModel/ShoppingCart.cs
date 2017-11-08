@@ -19,7 +19,7 @@ namespace WeShop.EFModel
         [StringLength(16)]
         public string ProCode { get; set; }
 
-        public int? Qty { get; set; }
+        public int Qty { get; set; }
 
         public DateTime? CreateTime { get; set; }
 

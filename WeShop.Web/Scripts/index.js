@@ -9,8 +9,8 @@ $(function(){
 	$(".search_list ul li a>img").height(1*w3);
 	
 	
-	$(".pro_det>p span:eq(1)").css("background-image","url(images/icon_013.png)");
-	$(".pro_bottom span b:eq(0)").css("background-image","url(images/icon_022.png)");
+	$(".pro_det>p span:eq(1)").css("background-image", "url(Content/images/icon_013.png)");
+	$(".pro_bottom span b:eq(0)").css("background-image","url(Content/images/icon_022.png)");
 	$(".pro_bottom>p a:eq(0)").css("background-color","#252525");
 	
 	$(".pro_standard dl:eq(0) dd").click(function(){
@@ -32,7 +32,7 @@ $(function(){
 //底部固定导航
 
 $(function(){
-	var h=$(".ftop").height()+6;
+	var h=$(".ftop").height()-2;
 	$("body").css({"padding-top":h+"px"})
 })
 /***回顶部***/

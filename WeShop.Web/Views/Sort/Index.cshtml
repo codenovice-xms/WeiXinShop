@@ -39,8 +39,21 @@
         $(".home").removeClass("current");
         $(".car").removeClass("current");
     </script>
+    <script>
+        //二级列表的选中样式
+        var aLi = document.getElementsByName('nav');
+        var arr = [].slice.call(aLi);
+        var code = window.location.href;//获取当前页面链接
+        var nav=1;
+        if ((code.split('=')[1]) != undefined) {
+            nav = code.split('=')[1];
+        }
+        if (nav.toString() === arr[nav - 1].id.toString()) {
+            $("#"+nav+"").addClass("on");
+        }
+    </script>
 }
-    <!--ftop开始-->
+<!--ftop开始-->
 <div class="ftop">
     <div class="index_search index_search01" style="padding-left: 10px;">
         <div style="left: 0px; width: 100%;">
@@ -57,7 +70,7 @@
             @foreach (var sort in Model.Sorts)
             {
                 <a href="@Url.Action("Index", new {code = @sort.Code})">
-                    <li name="nav" class="@sort.Code">@sort.Name</li>
+                    <li name="nav" id="@sort.Code" class="@sort.Code">@sort.Name</li>
                 </a>
             }
         </ul>

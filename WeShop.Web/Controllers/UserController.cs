@@ -21,7 +21,7 @@ namespace WeShop.Web.Controllers
             UserInfoViewModel userInfoViewModel = new UserInfoViewModel();
             userInfoViewModel.OAuthUserInfo = Session["userinfo"] as OAuthUserInfo;
             Customer customer = new Customer();
-            customer.OpenId = userInfoViewModel.OAuthUserInfo.openid;
+            Session["openid"]= customer.OpenId = userInfoViewModel.OAuthUserInfo.openid;
             customer.CreateTime=DateTime.Now;
             if (CustomerService.GetEntity(c => c.OpenId == userInfoViewModel.OAuthUserInfo.openid)==null)
             {

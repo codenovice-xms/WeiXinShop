@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -21,7 +22,7 @@ namespace WeShop.Repository
         }
         public void Insert(TEntity tEntity)
         {
-            _dbSet.Add(tEntity);
+            _dbSet.AddOrUpdate(tEntity);
         }
 
         public void Delete(TEntity tEntity)

@@ -17,7 +17,7 @@ $(function(){
 
 	var bottom = bottom01 + bottom02 + bottom03;
 	var top = top01 + top02;
-	$("body").css({"padding-bottom":bottom+"px","padding-top":top+"px"})
+	$("body").css({ "padding-bottom": bottom + "px", "padding-top": top + "px" });
 })
 
 

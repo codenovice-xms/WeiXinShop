@@ -47,6 +47,7 @@
     <Compile Include="IPhotoRepository.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="IReviewRepository.cs" />
+    <Compile Include="IShopCarRepository.cs" />
     <Compile Include="ISortRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

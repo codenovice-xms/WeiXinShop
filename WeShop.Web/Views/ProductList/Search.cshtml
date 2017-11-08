@@ -1,59 +1,83 @@
 ﻿@model IEnumerable<WeShop.EFModel.Product>
 @{
+    ViewBag.Title = "搜索";
     Layout = "~/Views/_LayoutMaster.cshtml";
 }
-<html>
-<head>
-    <title>@ViewBag.Title</title>
+@section Style
+{
     <style type="text/css">
         .search_list ul li img {
             border: 4px solid #ddd;
             border-radius: 50%;
         }
 
-            .search_list ul li img:hover {
-                border: 4px solid #666;
-            }
+        .search_list ul li img:hover { border: 4px solid #666; }
+
+        .null {
+            margin: 50px 0 0 30px;
+            text-align: center;
+            line-height: 2em;
+        }
+
+        .null a { }
     </style>
-</head>
-<body>
-    <!--ftop开始-->
-    <div class="ftop">
-        <div class="index_search index_search01" style="padding-left: 10px;">
-            <div>
-                <input onclick="document.location = '@Url.Action("Index","Search")'" type="text" placeholder="请输入您要搜索的产品">
-                <input class="dw" type="button" value="">  @*链接是搜索页*@
-            </div>
+}
+@section Script
+{
+    <script>
+        $(".search_list ul li a img").each(function() {
+            var w = $(this).width();
+            $(this).height(w + "px");
+        });
+    </script>
+}
+<!--ftop开始-->
+<div class="ftop">
+    <div class="index_search index_search01" style="padding-left: 10px;">
+        <div>
+            <input onclick="document.location = '@Url.Action("Index", "Search")'" type="text" placeholder="请输入您要搜索的产品">
+            <input class="dw" type="button" value=""> @*链接是搜索页*@
         </div>
-        <div style="clear: both;"></div>
     </div>
-    <!--ftop开始-->
-    <div class="search_list">
+    <div style="clear: both;"></div>
+</div>
+<!--ftop开始-->
+<div class="search_list">
+    <p>
+        <a class="on">
+            <span>综合</span></a><a>
+            <span>销量</span></a><a>
+            <span>评价</span></a><a>
+            <span class="bg">价格</span></a>
+    </p>
+
+    @if (@ViewBag.Product == "Products")
+    {
         <ul>
             @foreach (var product in Model)
             {
-                <li>
-                    <a href="@Url.Action("Index", "ProDetails", new {@product.Code})">
-                        <img src="@product.ProPhotoes.First().ImgUrl.Split(';')[0]">
-                        <div class="search_item">
-                            <p>@product.Intro</p>
-                            <h2>
-                                <i>￥</i><b>@product.SellPrice</b>
-                            </h2>
-                        </div>
-                    </a>
-                </li>
+            <li>
+                <a href="@Url.Action("Index", "ProDetails", new {@product.Code})">
+                    <img src="@product.ProPhotoes.First().ImgUrl.Split(';')[0]">
+                    <div class="search_item">
+                        <p>@product.Name</p>
+                        <h2>
+                            <i>￥</i><b>@product.SellPrice</b>
+                        </h2>
+                    </div>
+                </a>
+            </li>
             }
         </ul>
-    </div>
+    }
+    else
+    {
+        <div class="null">
+            <p>
+                哎呀，没找到对应商品。<br/><a href="@Url.Action("Index", "Home")">看看其他商品</a>
+            </p>
+        </div>
+    }
 
-    <script>
-    $(".search_list ul li a img").each(function() {
-        var w = $(this).width();
-        $(this).height(w + "px");
-    });
-    </script>
 
-
-</body>
-</html>
+</div>

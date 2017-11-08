@@ -9,14 +9,14 @@
     <link href="~/Content/css/fullscreenstyle.css" type="text/css" rel="stylesheet"/>
     <style>
         .comea {
-            display: block;
-            width: 18%;
-            float: right;
-            text-align: right;
-            font-size: 14px;
             color: #000;
-            line-height: 20px;
             cursor: pointer;
+            display: block;
+            float: right;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: right;
+            width: 18%;
         }
     </style>
 }
@@ -151,6 +151,40 @@
 
         });
     </script>
+    <script>
+        $('#AddCart').click(function() {
+            var shu = $('#shu').val();
+            if (shu == undefined) {
+                shu = 1;
+            }
+            var that = this;
+            $.ajax({
+                url: '@Url.Action("Car", "ShopCart")',
+                type: 'POST',
+                data: { procode: @Model.Products.First().Code, count: shu }
+            }).done(function(res) {
+                if (res === '200') {
+                    $.alert("添加到购物车成功，在购物车等您");
+                } else if (res === '400') {
+                    $.alert({
+                        title: '提示',
+                        text: '您还未登陆，请先登陆',
+                        onOK: function() {
+                            location.href = "@Url.Action("Index", "User")";
+                        }
+                    });
+                } else if (res === '500') {
+                    $.alert({
+                        title: '警告',
+                        text: '发生未知错误，返回首页',
+                        onOK: function() {
+                            location.href = "@Url.Action("Index", "Home")";
+                        }
+                    });
+                }
+            });
+        })
+    </script>
 }
 @*<!--ftop开始-->
 <div class="ftop">
@@ -187,7 +221,8 @@
         <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
         <div class="pro_det">
             <h3>
-                <i>￥</i><b>188.00</b>@*<span>特级</span><span>甄选</span>*@ </h3><a style="color: #000" class="comea">分享有礼</a>
+                <i>￥</i><b>188.00</b>@*<span>特级</span><span>甄选</span>*@
+            </h3><a style="color: #000" class="comea">分享有礼</a>
             <p>
                 <span>库存：616 </span><i></i>
             </p>
@@ -197,50 +232,22 @@
 <!---banner over--->
 <div class="pro_standard">
     <h2>
-        <span>选择商品规格/口味</span><img src="/Content/images/icon_015.png">
+        <span>选择商品规格</span><img src="/Content/images/icon_015.png">
     </h2>
     <div class="pro_stand">
         <dl>
-            <dt>食品口味</dt>
-            <dd>原味</dd>
-        </dl>
-        <dl>
             <dt>规格</dt>
-            <dd>原味</dd>
+            <dd class="on">标配</dd>
         </dl>
     </div>
     <div class="shu">
-        <i>购买数量</i><span class="jia"><img  src="/Content/images/icon_017.png"></span><input class="shopcart-td-num" type="text" value="1"/><span class="jian"><img  src="/Content/images/icon_016.png"></span></div>
+        <i>购买数量</i><span class="jia"><img  src="/Content/images/icon_017.png"></span><input class="shopcart-td-num" id="shu" type="text" value="1"/><span class="jian"><img  src="/Content/images/icon_016.png"></span></div>
     <div class="pro_description modular">
         <h2>
             <span>商品描述</span></h2>
         <div class="miaoshu">
-           @Html.Raw(Model.Products.First().Detail)
+            @Html.Raw(Model.Products.First().Detail)
         </div>
-    </div>
-</div>
-<div class="pro_description modular">
-    <h2>
-        <span>基本参数</span></h2>
-    <div class="canshu">
-        <table>
-            <tr>
-                <td>品色</td><td>红色</td>
-            </tr>
-            <tr>
-                <td>年份</td><td>1896</td>
-            </tr>
-            <tr>
-                <td>产地</td><td>中国云南</td>
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="pro_description modular">
-    <h2>
-        <span>更多图片</span></h2>
-    <div class="tu_pian">
-        <img src="/Content/images/img_04.jpg"><img src="/Content/images/img_07.jpg"><img src="/Content/images/img_08.jpg">
     </div>
 </div>
 <div class="pro_description modular">
@@ -272,9 +279,9 @@
 </div>
 
 <div class="fixft pro_bottom">
-    <span><b><a target="_blank" href="#">客服</a></b><b>收藏</b></span>
+    <span><b><a target="_blank" href="#">客服</a></b>@*<b>收藏</b>*@</span>
     <p>
-        <a>加入购物车</a><a href="#">立即购买</a>
+        <a id="AddCart">加入购物车</a><a href="#">立即购买</a>
     </p>
 </div>
 
@@ -287,16 +294,6 @@
         </li>
         <li>
             <a href="#luxian2" class="linka">
-                <span>基本参数</span><i></i>
-            </a>
-        </li>
-        <li>
-            <a href="#luxian3" class="linka">
-                <span>更多图片</span><i></i>
-            </a>
-        </li>
-        <li>
-            <a href="#luxian4" class="linka">
                 <span>用户评价</span><i></i>
             </a>
         </li>
@@ -307,8 +304,6 @@
         </a>
     </p>
 </div>
-
-
 <!--提醒分享-->
 <div class="sharetip">
     <img src="/Content/images/sharetip_06.png" alt="">

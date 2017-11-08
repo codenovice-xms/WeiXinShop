@@ -15,6 +15,7 @@ namespace WeShop.Web.Controllers
         public IBannerService BannerService { get; set; }
         public IProductService ProductService { get; set; }
         public  INoticeService NoticeService { get; set; }
+        public IShopCarService ShopCarService { get; set; }
         public ActionResult Index(string type="1")
         {
             int? CartProNum = null;

@@ -23,7 +23,15 @@ namespace WeShop.Web.Controllers
         public ActionResult Search(string Key)
         {
             Key = Request["key"];
+           
             var Products = ProductService.GetEntities(p => p.Name.Contains(Key)  ||p.Intro.Contains(Key));
+            ViewBag.Product = "Products";
+            if (Products.LongCount()<1)                                             //如果没有搜索到相应商品
+            {
+                var TuiProducts = ProductService.GetEntities(p => p.Type==2);       //查找推荐商品
+                ViewBag.Product = "TuiProducts";
+                return View(TuiProducts);                                   
+            }
             return View(Products);
         }
     }
