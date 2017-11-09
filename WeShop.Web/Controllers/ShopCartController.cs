@@ -11,7 +11,6 @@ using WeShop.Web.Filters;
 
 namespace WeShop.Web.Controllers
 {
-    [OAuthFilter]
     public class ShopCartController : Controller
     {
         public IProductService ProductService { get; set; }
@@ -28,7 +27,7 @@ namespace WeShop.Web.Controllers
             return View(shoppingCart);
         }
 
-        public string Car()
+        public string AddCar()
         {
             if (Session["userinfo"]==null)
             {
@@ -48,6 +47,12 @@ namespace WeShop.Web.Controllers
             shoppingCart.Qty = num;
             shoppingCart.CreateTime=DateTime.Now;
             ShopCarService.Add(shoppingCart);
+            return "200";
+        }
+
+        public string DeleteCar()
+        {
+
             return "200";
         }
     }

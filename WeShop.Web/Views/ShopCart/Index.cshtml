@@ -74,40 +74,63 @@
 
 
             $(".shopcar ul li .delete").click(function() {
-                $(".block_bg,.delete_box").fadeIn();
+                $(".block_bg, .delete_box").fadeIn();
             });
-            $(".block_bg,.delete_box p a").click(function() {
-                $(".block_bg,.delete_box").fadeOut();
+            $(".block_bg, .delete_box p a").click(function() {
+                $(".block_bg, .delete_box").fadeOut();
             });
         });
     </script>
-<script>
+    <script>
         $(".car").addClass("current");
         $(".sort").removeClass("current");
         $(".home").removeClass("current");
         $(".my").removeClass("current");
-</script>
+    </script>
+    <script>
+        $('.delete').click(function() {
+            var that = this;
+            $.ajax({
+                url: '@Url.Action("DeleteCar", "ShopCart")',
+                type: 'POST',
+                data: { id: $(that).data('id'), uname: $(that).data('uname') }
+            }).done(function(res) {
+                if (res === '200') {
+                    $(that).parents('li').remove();
+                } else
+                    $.alert("删除失败");
+            }).error(function() {
+                $.alert("自定义的消息内容");
+            });
+        });
+    </script>
 }
 <!--ftop开始-->
 <div class="ftop">
-    <h3 style="text-align:center; font-size:18px;">购物车</h3>
-    <a style="position:absolute; top:4px; font-size:14px; right:15px; color:#333" class="all">编辑</a>
+    <h3 style="font-size: 18px; text-align: center;">购物车</h3>
+    <a style="color: #333; font-size: 14px; position: absolute; right: 15px; top: 4px;" class="all">编辑</a>
     <div style="clear: both;"></div>
 </div>
-<!--ftop结束--> 
+<!--ftop结束-->
 <div class="shopcar" style="margin-bottom: 30px;">
     <ul>
         @foreach (var shopcar in Model)
         {
             <li>
                 <p>
-                    <label><input type="checkbox"></label><a href="@Url.Action("Index","ProDetails",new { Code=@shopcar.ProCode})"><img src="@shopcar.Product.ProPhotoes.First().ImgUrl"></a>
+                    <label>
+                        <input type="checkbox">
+                    </label><a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">
+                        <img src="@shopcar.Product.ProPhotoes.First().ImgUrl">
+                    </a>
                 </p>
                 <div class="shop_car">
-                    <a href="@Url.Action("Index","ProDetails",new {Code=@shopcar.ProCode})">@shopcar.Product.Name</a>
+                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">@shopcar.Product.Name</a>
                     <span>规格：标配</span>
                     <div class="shu">
-                        <span class="jian"><img src="/Content/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@shopcar.Qty" /><span class="jia"><img src="/Content/images/icon_017.png"></span><a><i>单品总价：￥</i><b>@(@shopcar.Product.SellPrice* @shopcar.Qty)</b></a>
+                        <span class="jian"><img src="/Content/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@shopcar.Qty"/><span class="jia"><img src="/Content/images/icon_017.png"></span><a>
+                            <i>单品总价：￥</i><b>@(@shopcar.Product.SellPrice*@shopcar.Qty)</b>
+                        </a>
                     </div>
                 </div>
                 <img class="delete" src="/Content/images/icon_030.png">
@@ -115,16 +138,21 @@
         }
     </ul>
     <div class="pay">
-        <label><input type="checkbox"><span>全选</span></label>
+        <label>
+            <input type="checkbox"><span>全选</span></label>
         <div class="pay_right">
-            <p><span>合计：<b>￥898.50</b></span><i>不含运费</i></p>
-            <a href="confirm_order.html">结算（5）</a>
+            <p>
+                <span>合计：<b>￥898.50</b></span><i>不含运费</i>
+            </p>
+            <a href="confirm_order.html">结算</a>
         </div>
     </div>
     <!--弹窗-->
-    <div class="block_bg"></div>
+    @*<div class="block_bg"></div>
     <div class="delete_box">
         <h2>确定要删除此商品吗？</h2>
-        <p><a class="cancel">取消</a><a class="sure">确定</a></p>
-    </div>
+        <p>
+            <a class="cancel">取消</a><a class="sure">确定</a>
+        </p>
+    </div>*@
 </div>

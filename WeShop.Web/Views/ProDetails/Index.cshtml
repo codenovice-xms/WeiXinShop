@@ -159,12 +159,12 @@
             }
             var that = this;
             $.ajax({
-                url: '@Url.Action("Car", "ShopCart")',
+                url: '@Url.Action("AddCar", "ShopCart")',
                 type: 'POST',
                 data: { procode: @Model.Products.First().Code, count: shu }
             }).done(function(res) {
                 if (res === '200') {
-                    $.alert("添加到购物车成功，在购物车等您");
+                    $.toptip('添加到购物车成功', 'success');
                 } else if (res === '400') {
                     $.alert({
                         title: '提示',
@@ -277,9 +277,8 @@
         }
     </div>
 </div>
-
 <div class="fixft pro_bottom">
-    <span><b><a target="_blank" href="#">客服</a></b>@*<b>收藏</b>*@</span>
+    <span><b><a target="_blank" href="#">客服</a></b><b>收藏</b></span>
     <p>
         <a id="AddCart">加入购物车</a><a href="#">立即购买</a>
     </p>
