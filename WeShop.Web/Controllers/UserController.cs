@@ -15,13 +15,14 @@ namespace WeShop.Web.Controllers
     {
         public IProductService ProductService { get; set; }
         public ICustomerService CustomerService { get; set; }
-        [OAuthFilter]
+        //[OAuthFilter]
         public ActionResult Index()
         {
             UserInfoViewModel userInfoViewModel = new UserInfoViewModel();
             userInfoViewModel.OAuthUserInfo = Session["userinfo"] as OAuthUserInfo;
             Customer customer = new Customer();
             Session["openid"]= customer.OpenId = userInfoViewModel.OAuthUserInfo.openid;
+            Session["cusid"] = CustomerService.GetEntity(c => c.OpenId == Session["openid"].ToString()).Id;
             customer.CreateTime=DateTime.Now;
             if (CustomerService.GetEntity(c => c.OpenId == userInfoViewModel.OAuthUserInfo.openid)==null)
             {

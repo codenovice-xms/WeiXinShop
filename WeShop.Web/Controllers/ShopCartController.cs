@@ -22,7 +22,8 @@ namespace WeShop.Web.Controllers
             {
                 return Redirect(@Url.Action("Index", "User"));
             }
-            var cusid = CustomerService.GetEntity(c => c.OpenId == Session["openid"].ToString()).Id;
+            int cusid =Convert.ToInt32(Session["cusid"]);
+            Session["Carnum"] = ShopCarService.GetCount(s => s.CusId == cusid);
             var shoppingCart = ShopCarService.GetEntities(s => s.CusId == cusid);
             return View(shoppingCart);
         }
@@ -52,7 +53,15 @@ namespace WeShop.Web.Controllers
 
         public string DeleteCar()
         {
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.ProCode = Request["procode"];
+            var cusid = CustomerService.GetEntity(c => c.OpenId == Session["openid"].ToString()).Id;
+            shoppingCart.CusId = cusid;
 
+            if (ShopCarService.Remove(shoppingCart))
+            {
+                return "400";
+            }
             return "200";
         }
     }

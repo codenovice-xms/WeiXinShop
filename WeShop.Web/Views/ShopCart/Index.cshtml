@@ -3,10 +3,23 @@
     ViewBag.Title = "购物车";
     Layout = "~/Views/_LayoutNav.cshtml";
 }
-
+@section Style{
+    <style>
+        label>* {pointer-events: auto;}
+    </style>
+}
 @section Script
 {
     <script>
+        if (@Model.Count()<1) {
+            $(".nullcar").css('display','block');
+            $("#but").css('display', 'none');
+            $(".shopcar").css('display','none'); 
+        } else {
+            $(".nullcar").css('display','none');
+            $("#but").css('display', 'block');
+            $(".shopcar").css('display','block'); 
+        }
         $(function() {
             var jian = $(".jian");
             var jia = $(".jia");
@@ -71,14 +84,6 @@
             $(".ftop .all").click(function() {
                 $(".shopcar ul li .delete").toggle();
             });
-
-
-            $(".shopcar ul li .delete").click(function() {
-                $(".block_bg, .delete_box").fadeIn();
-            });
-            $(".block_bg, .delete_box p a").click(function() {
-                $(".block_bg, .delete_box").fadeOut();
-            });
         });
     </script>
     <script>
@@ -88,32 +93,57 @@
         $(".my").removeClass("current");
     </script>
     <script>
+        //购物车删除商品
         $('.delete').click(function() {
             var that = this;
-            $.ajax({
-                url: '@Url.Action("DeleteCar", "ShopCart")',
-                type: 'POST',
-                data: { id: $(that).data('id'), uname: $(that).data('uname') }
-            }).done(function(res) {
-                if (res === '200') {
-                    $(that).parents('li').remove();
-                } else
-                    $.alert("删除失败");
-            }).error(function() {
-                $.alert("自定义的消息内容");
+            $.confirm("是否确认删除？", function() {
+                $.ajax({
+                    url: '@Url.Action("DeleteCar", "ShopCart")',
+                    type: 'POST',
+                    data: { procode: $(that).data('procode') }
+                }).done(function(res) {
+                    if (res === '200') {
+                        $(that).parents('li').remove();
+                        var carnum = document.getElementById("carnum");
+                        var linum = carnum.getElementsByTagName("li");
+                        if (linum.length<1) {
+                            $(".nullcar").css('display','block');
+                            $("#but").css('display', 'none');
+                            $(".shopcar").css('display','none');
+                        } else {
+                            $(".nullcar").css('display','none');
+                            $("#but").css('display', 'block');
+                            $(".shopcar").css('display','block');
+                        }
+                    } else
+                        $.toptip('删除失败', 'error');
+                }).error(function() {
+                    $.toptip("未知错误");
+                });
+            }, function() {
+                console.log("已取消");
             });
+        });
+
+        $("#but_left").click(function() {
+            var that = this.parent("input").value;
+            console.log(that);
+        });
+        $("#but_right").click(function() {
+            var that = this.parent("input").value;
+            console.log(that);
         });
     </script>
 }
 <!--ftop开始-->
 <div class="ftop">
     <h3 style="font-size: 18px; text-align: center;">购物车</h3>
-    <a style="color: #333; font-size: 14px; position: absolute; right: 15px; top: 4px;" class="all">编辑</a>
+    <a style="color: #333; font-size: 14px; position: absolute; right: 15px; top: 4px;" class="all" id="but">编辑</a>
     <div style="clear: both;"></div>
 </div>
 <!--ftop结束-->
 <div class="shopcar" style="margin-bottom: 30px;">
-    <ul>
+    <ul id="carnum">
         @foreach (var shopcar in Model)
         {
             <li>
@@ -125,15 +155,15 @@
                     </a>
                 </p>
                 <div class="shop_car">
-                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">@shopcar.Product.Name</a>
-                    <span>规格：标配</span>
+                    <a href="@Url.Action("Index", "ProDetails")">@shopcar.Product.Name</a>
+                    <span>单价：@shopcar.Product.SellPrice</span>
                     <div class="shu">
-                        <span class="jian"><img src="/Content/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@shopcar.Qty"/><span class="jia"><img src="/Content/images/icon_017.png"></span><a>
+                        <span class="jian"><img id="but_left" src="/Content/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@shopcar.Qty"/><span class="jia"><img id="but_right" src="/Content/images/icon_017.png"></span><a>
                             <i>单品总价：￥</i><b>@(@shopcar.Product.SellPrice*@shopcar.Qty)</b>
                         </a>
                     </div>
                 </div>
-                <img class="delete" src="/Content/images/icon_030.png">
+                <img class="delete" data-procode="@shopcar.ProCode" src="/Content/images/icon_030.png">
             </li>
         }
     </ul>
@@ -147,12 +177,11 @@
             <a href="confirm_order.html">结算</a>
         </div>
     </div>
-    <!--弹窗-->
-    @*<div class="block_bg"></div>
-    <div class="delete_box">
-        <h2>确定要删除此商品吗？</h2>
-        <p>
-            <a class="cancel">取消</a><a class="sure">确定</a>
-        </p>
-    </div>*@
+</div>
+<div class="nullcar" style="display:none">
+    <div class="shopcar_null">
+        <img src="/Content/images/car.jpg">
+        <span>您的购物车空空如也</span>
+        <p><a class="person" href="@Url.Action("Index","User")">个人中心</a><a href="@Url.Action("Index","Home")">马上去逛逛</a></p>
+    </div>
 </div>
