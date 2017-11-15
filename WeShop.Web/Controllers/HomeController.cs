@@ -19,7 +19,6 @@ namespace WeShop.Web.Controllers
         public ICustomerService CustomerService { get; set; }
         public ActionResult Index(string type="1")
         {
-            Session["cusid"] = 1;
             HomeViewModel homeViewModel = new HomeViewModel();
             homeViewModel.Banners = BannerService.GetEntities(b => true);
             homeViewModel.NoticeNum = NoticeService.GetCount(n => true);

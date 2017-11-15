@@ -11,41 +11,113 @@
 @section Script
 {
     <script>
-        if (@Model.Count()<1) {
-            $(".nullcar").css('display','block');
-            $("#but").css('display', 'none');
-            $(".shopcar").css('display','none'); 
-        } else {
-            $(".nullcar").css('display','none');
-            $("#but").css('display', 'block');
-            $(".shopcar").css('display','block'); 
-        }
-        $(function() {
+        $(function () {
             var jian = $(".jian");
             var jia = $(".jia");
             var kunchun = 10; //当库存不足时，可以提醒用户。
+            //加商品数量
             jia.click(function() {
                 var n = $(this).siblings("input").val();
+                var code = $(this).data('procode');
+                var sell = $(this).siblings('.sellprice').html();
                 n++;
                 if (n > kunchun) {
-                    alert("库存不足啦!");
-                    $(this).siblings("input").val(kunchun - 1);
+                    $.toptip("库存不足啦!", 'warning');
+                    $(this).siblings("input").val(kunchun);
                     return false;
                 }
                 $(this).siblings("input").val(n);
+                var that = this;
+                $.ajax({
+                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    type: 'POST',
+                    data: { procode: code, count: n }
+                }).done(function(res) {
+                    if (res === '200') {
+                        //成功后事件
+                        $(that).siblings('a').find('b').html(sell * n);
+                    } else{
+                        $.alert({
+                            title: '警告',
+                            text: '发生未知错误，返回首页',
+                            onOK: function() {
+                                location.href = "@Url.Action("Index", "Home")";
+                            }
+                        });
+                    }
+                });
                 return false;
             });
+            //减商品数量
             jian.click(function() {
                 var n = $(this).siblings("input").val();
+                var code = $(this).data('procode');
+                var sell = $(this).siblings('.sellprice').html();
                 n--;
                 if (n < 1) {
                     $(this).siblings("input").val(n + 1);
+                    $.toptip('不能再减了>_<', 1000, 'warning');
                     return false;
                 }
                 $(this).siblings("input").val(n);
+                var that = this;
+                $.ajax({
+                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    type: 'POST',
+                    data: { procode: code, count: n }
+                }).done(function(res) {
+                    if (res === '200') {
+                        //成功后事件
+                        $(that).siblings('a').find('b').html(sell * n);
+                    } else{
+                        $.alert({
+                            title: '警告',
+                            text: '发生未知错误，返回首页',
+                            onOK: function() {
+                                location.href = "@Url.Action("Index", "Home")";
+                            }
+                        });
+                    }
+                });
                 return false;
             });
-
+            //input失去焦点事件
+            $(".shopcart-td-num").blur(function() {
+                var n = $(this).val();
+                var code = $(this).data('procode');
+                var sell = $(this).siblings('.sellprice').html();
+                console.log(n, code, sell);
+                if (n<1) {
+                    $.toptip("请输入正确的商品数量", "warning");
+                    n = 1;
+                    $(this).val(n);
+                }
+                if (n > kunchun) {
+                    $.toptip("库存不足啦!", 'warning');
+                    n = 10;
+                    $(this).val(n);
+                }
+                var that = this;
+                var num = $(that).val();
+                $.ajax({
+                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    type: 'POST',
+                    data: { procode: code, count: num }
+                }).done(function(res) {
+                    if (res === '200') {
+                        //成功后事件
+                        $(that).siblings('a').find('b').html(sell * num);
+                    } else{
+                        $.alert({
+                            title: '警告',
+                            text: '发生未知错误，返回首页',
+                            onOK: function() {
+                                location.href = "@Url.Action("Index", "Home")";
+                            }
+                        });
+                    }
+                });
+            });
             $("label input").click(function() {
                 $(this).parent().toggleClass("on");
                 var flag = 1;
@@ -93,46 +165,49 @@
         $(".my").removeClass("current");
     </script>
     <script>
-        //购物车删除商品
-        $('.delete').click(function() {
-            var that = this;
-            $.confirm("是否确认删除？", function() {
-                $.ajax({
-                    url: '@Url.Action("DeleteCar", "ShopCart")',
-                    type: 'POST',
-                    data: { procode: $(that).data('procode') }
-                }).done(function(res) {
-                    if (res === '200') {
-                        $(that).parents('li').remove();
-                        var carnum = document.getElementById("carnum");
-                        var linum = carnum.getElementsByTagName("li");
-                        if (linum.length<1) {
-                            $(".nullcar").css('display','block');
-                            $("#but").css('display', 'none');
-                            $(".shopcar").css('display','none');
-                        } else {
-                            $(".nullcar").css('display','none');
-                            $("#but").css('display', 'block');
-                            $(".shopcar").css('display','block');
-                        }
-                    } else
-                        $.toptip('删除失败', 'error');
-                }).error(function() {
-                    $.toptip("未知错误");
+        $(function() {
+            //判断显示的div
+            if (@Model.Count() < 1) {
+                $(".nullcar").css('display', 'block');
+                $("#but").css('display', 'none');
+                $(".shopcar").css('display', 'none');
+            } else {
+                $(".nullcar").css('display', 'none');
+                $("#but").css('display', 'block');
+                $(".shopcar").css('display', 'block');
+            }
+            //购物车删除商品
+            $('.delete').click(function() {
+                var that = this;
+                $.confirm("是否确认删除？", function() {
+                    $.ajax({
+                        url: '@Url.Action("DeleteCar", "ShopCart")',
+                        type: 'POST',
+                        data: { procode: $(that).data('procode') }
+                    }).done(function(res) {
+                        if (res === '200') {
+                            $(that).parents('li').remove();
+                            var carnum = document.getElementById("carnum");
+                            var linum = carnum.getElementsByTagName("li");
+                            if (linum.length < 1) {
+                                $(".nullcar").css('display', 'block');
+                                $("#but").css('display', 'none');
+                                $(".shopcar").css('display', 'none');
+                            } else {
+                                $(".nullcar").css('display', 'none');
+                                $("#but").css('display', 'block');
+                                $(".shopcar").css('display', 'block');
+                            }
+                        } else
+                            $.toptip('删除失败', 'error');
+                    }).error(function() {
+                        $.toptip("未知错误");
+                    });
+                }, function() {
+                    console.log("已取消");
                 });
-            }, function() {
-                console.log("已取消");
             });
-        });
-
-        $("#but_left").click(function() {
-            var that = this.parent("input").value;
-            console.log(that);
-        });
-        $("#but_right").click(function() {
-            var that = this.parent("input").value;
-            console.log(that);
-        });
+        })
     </script>
 }
 <!--ftop开始-->
@@ -148,19 +223,18 @@
         {
             <li>
                 <p>
-                    <label>
-                        <input type="checkbox">
-                    </label><a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">
-                        <img src="@shopcar.Product.ProPhotoes.First().ImgUrl">
-                    </a>
+                    <label><input type="checkbox"></label>
+                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})"><img src="@shopcar.Product.ProPhotoes.First().ImgUrl"></a>
                 </p>
                 <div class="shop_car">
-                    <a href="@Url.Action("Index", "ProDetails")">@shopcar.Product.Name</a>
+                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">@shopcar.Product.Name</a>
                     <span>单价：@shopcar.Product.SellPrice</span>
                     <div class="shu">
-                        <span class="jian"><img id="but_left" src="/Content/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@shopcar.Qty"/><span class="jia"><img id="but_right" src="/Content/images/icon_017.png"></span><a>
-                            <i>单品总价：￥</i><b>@(@shopcar.Product.SellPrice*@shopcar.Qty)</b>
-                        </a>
+                        <span class="jian" data-procode="@shopcar.ProCode"><img src="/Content/images/icon_016.png"></span>
+                        <input class="shopcart-td-num" data-procode="@shopcar.ProCode" type="text" value="@shopcar.Qty"/>
+                        <span class="jia" data-procode="@shopcar.ProCode"><img src="/Content/images/icon_017.png"></span>
+                        <span class="sellprice" style="display: none">@shopcar.Product.SellPrice</span>
+                        <a><i>单品总价：￥</i><b class="price">@(@shopcar.Product.SellPrice*@shopcar.Qty)</b></a>
                     </div>
                 </div>
                 <img class="delete" data-procode="@shopcar.ProCode" src="/Content/images/icon_030.png">
@@ -174,7 +248,7 @@
             <p>
                 <span>合计：<b>￥898.50</b></span><i>不含运费</i>
             </p>
-            <a href="confirm_order.html">结算</a>
+            <a href="confirm_order.html">结算(<span>2</span>)</a>
         </div>
     </div>
 </div>

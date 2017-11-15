@@ -15,7 +15,7 @@ namespace WeShop.Web.Controllers
     {
         public IProductService ProductService { get; set; }
         public ICustomerService CustomerService { get; set; }
-        //[OAuthFilter]
+        [OAuthFilter]
         public ActionResult Index()
         {
             UserInfoViewModel userInfoViewModel = new UserInfoViewModel();

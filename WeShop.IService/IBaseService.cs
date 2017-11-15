@@ -11,7 +11,7 @@ namespace WeShop.IService
     {
 
         /// <summary>
-        /// 添加
+        /// 添加或修改
         /// </summary>
         /// <param name="tEntity">实体模型</param>
         /// <returns></returns>

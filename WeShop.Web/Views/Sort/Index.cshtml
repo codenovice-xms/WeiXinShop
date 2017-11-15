@@ -69,7 +69,7 @@
         <ul>
             @foreach (var sort in Model.Sorts)
             {
-                <a href="@Url.Action("Index", new {code = @sort.Code})">
+                <a href="@Url.Action("Index", new { @sort.Code})">
                     <li name="nav" id="@sort.Code" class="@sort.Code">@sort.Name</li>
                 </a>
             }
@@ -82,10 +82,10 @@
                     @foreach (var two in Model.TwoSorts)
                     {
                         <li>
-                            <a class="imga" href="@Url.Action("Index", "ProductList", new {@two.Code})">
+                            <a class="imga" href="@Url.Action("Index", "ProductList", new {sort=@two.Code})">
                                 <img src="@two.Image">
                             </a>
-                            <a class="txta" href="@Url.Action("Index", "ProductList", new {@two.Code})">
+                            <a class="txta" href="@Url.Action("Index", "ProductList", new { sort=@two.Code})">
                                 <span>@two.Name</span>
                                 <i>@two.Intro</i>
                             </a>
