@@ -26,5 +26,7 @@ namespace WeShop.EFModel
         public virtual Customer Customer { get; set; }
 
         public virtual Product Product { get; set; }
+
+        public bool IsChecked { get; set; }
     }
 }

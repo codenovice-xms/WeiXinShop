@@ -24,7 +24,7 @@ namespace WeShop.Web.Controllers
             homeViewModel.NoticeNum = NoticeService.GetCount(n => true);
             homeViewModel.Notices = NoticeService.GetEntitiesByPage(3, 1, false, n => true, n => n.ModiTime);
             homeViewModel.Products = ProductService.GetEntitiesByPage(3, 1, false, p => p.Type.ToString()==type, p => p.ModiTime);
-            
+            Session["cusid"] = 4; //假数据
             return View(homeViewModel);
         }
     }

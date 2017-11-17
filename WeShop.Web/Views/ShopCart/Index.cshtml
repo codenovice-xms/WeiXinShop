@@ -5,13 +5,13 @@
 }
 @section Style{
     <style>
-        label>* {pointer-events: auto;}
+        label > * { pointer-events: auto; }
     </style>
 }
 @section Script
 {
     <script>
-        $(function () {
+        $(function() {
             var jian = $(".jian");
             var jia = $(".jia");
             var kunchun = 10; //当库存不足时，可以提醒用户。
@@ -29,14 +29,14 @@
                 $(this).siblings("input").val(n);
                 var that = this;
                 $.ajax({
-                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    url: '@Url.Action("UpdateCarNum", "ShopCart")',
                     type: 'POST',
                     data: { procode: code, count: n }
                 }).done(function(res) {
                     if (res === '200') {
                         //成功后事件
                         $(that).siblings('a').find('b').html(sell * n);
-                    } else{
+                    } else {
                         $.alert({
                             title: '警告',
                             text: '发生未知错误，返回首页',
@@ -62,14 +62,14 @@
                 $(this).siblings("input").val(n);
                 var that = this;
                 $.ajax({
-                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    url: '@Url.Action("UpdateCarNum", "ShopCart")',
                     type: 'POST',
                     data: { procode: code, count: n }
                 }).done(function(res) {
                     if (res === '200') {
                         //成功后事件
                         $(that).siblings('a').find('b').html(sell * n);
-                    } else{
+                    } else {
                         $.alert({
                             title: '警告',
                             text: '发生未知错误，返回首页',
@@ -87,7 +87,7 @@
                 var code = $(this).data('procode');
                 var sell = $(this).siblings('.sellprice').html();
                 console.log(n, code, sell);
-                if (n<1) {
+                if (n < 1) {
                     $.toptip("请输入正确的商品数量", "warning");
                     n = 1;
                     $(this).val(n);
@@ -100,14 +100,14 @@
                 var that = this;
                 var num = $(that).val();
                 $.ajax({
-                    url: '@Url.Action("UpdateCarNum","ShopCart")',
+                    url: '@Url.Action("UpdateCarNum", "ShopCart")',
                     type: 'POST',
                     data: { procode: code, count: num }
                 }).done(function(res) {
                     if (res === '200') {
                         //成功后事件
                         $(that).siblings('a').find('b').html(sell * num);
-                    } else{
+                    } else {
                         $.alert({
                             title: '警告',
                             text: '发生未知错误，返回首页',
@@ -118,20 +118,34 @@
                     }
                 });
             });
+            //获取购物车所选商品的总价
+            var getsum = function() {
+                var sumprice = 0 * 1.0;
+                $('#carnum').find('b').each(function() {
+                    var that = this;
+                    var ischeck = $(that).parent('li').find('p').find('label').hasClass('on');
+                    var price = $(that).html() * 1.0;
+                    console.log(ischeck);
+                    if (ischeck) {
+                        sumprice += price;
+                    }
+                });
+                $('.pay_right').find('b').html(sumprice.toFixed(2));
+            };
+            getsum();
+            //商品是否选中的样式
             $("label input").click(function() {
                 $(this).parent().toggleClass("on");
+                getsum();
                 var flag = 1;
                 $("label input").each(function() {
                     if (!this.checked) {
                         flag = 0;
                     }
                 });
-                if (flag === 1) {
-                    $(".car_pay span").addClass("on");
-                } else {
-                    $(".car_pay span").removeClass("on");
-                }
             });
+
+            //全选按钮
             $(".pay label span").click(function() {
                 if ($(this).hasClass("on")) {
                     $(this).removeClass("on");
@@ -143,7 +157,7 @@
                     $("label").addClass("on");
                 }
             });
-
+            //编辑按钮文本改变
             $(".ftop .all").click(function() {
                 var val = $(this).html();
                 if (val == "编辑") {
@@ -152,7 +166,7 @@
                     $(this).html("编辑");
                 }
             });
-
+            //编辑按钮控制删除按钮的显示
             $(".ftop .all").click(function() {
                 $(".shopcar ul li .delete").toggle();
             });
@@ -223,8 +237,12 @@
         {
             <li>
                 <p>
-                    <label><input type="checkbox"></label>
-                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})"><img src="@shopcar.Product.ProPhotoes.First().ImgUrl"></a>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">
+                        <img src="@shopcar.Product.ProPhotoes.First().ImgUrl">
+                    </a>
                 </p>
                 <div class="shop_car">
                     <a href="@Url.Action("Index", "ProDetails", new {Code = @shopcar.ProCode})">@shopcar.Product.Name</a>
@@ -234,7 +252,9 @@
                         <input class="shopcart-td-num" data-procode="@shopcar.ProCode" type="text" value="@shopcar.Qty"/>
                         <span class="jia" data-procode="@shopcar.ProCode"><img src="/Content/images/icon_017.png"></span>
                         <span class="sellprice" style="display: none">@shopcar.Product.SellPrice</span>
-                        <a><i>单品总价：￥</i><b class="price">@(@shopcar.Product.SellPrice*@shopcar.Qty)</b></a>
+                        <a>
+                            <i>单品总价：￥</i><b class="price">@(@shopcar.Product.SellPrice*@shopcar.Qty)</b>
+                        </a>
                     </div>
                 </div>
                 <img class="delete" data-procode="@shopcar.ProCode" src="/Content/images/icon_030.png">
@@ -246,16 +266,18 @@
             <input type="checkbox"><span>全选</span></label>
         <div class="pay_right">
             <p>
-                <span>合计：<b>￥898.50</b></span><i>不含运费</i>
+                <span>合计：<b>￥0.00</b></span><i>不含运费</i>
             </p>
             <a href="confirm_order.html">结算(<span>2</span>)</a>
         </div>
     </div>
 </div>
-<div class="nullcar" style="display:none">
+<div class="nullcar" style="display: none">
     <div class="shopcar_null">
         <img src="/Content/images/car.jpg">
         <span>您的购物车空空如也</span>
-        <p><a class="person" href="@Url.Action("Index","User")">个人中心</a><a href="@Url.Action("Index","Home")">马上去逛逛</a></p>
+        <p>
+            <a class="person" href="@Url.Action("Index", "User")">个人中心</a><a href="@Url.Action("Index", "Home")">马上去逛逛</a>
+        </p>
     </div>
 </div>

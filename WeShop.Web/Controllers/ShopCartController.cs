@@ -22,7 +22,6 @@ namespace WeShop.Web.Controllers
             //{
             //    return Redirect(@Url.Action("Index", "User"));
             //}
-            Session["cusid"] = 4;
             int cusid =Convert.ToInt32(Session["cusid"]);
             Session["Carnum"] = ShopCarService.GetCount(s => s.CusId == cusid);
             var shoppingCart = ShopCarService.GetEntities(s => s.CusId == cusid);
@@ -52,6 +51,7 @@ namespace WeShop.Web.Controllers
             else num = Convert.ToInt32(Request["count"]);                                                                                              //直接添加传的值
             shoppingCart.Qty = num;
             shoppingCart.CreateTime=DateTime.Now;
+            shoppingCart.IsChecked = false;
             ShopCarService.Add(shoppingCart);
             return "200";
         }
@@ -81,6 +81,7 @@ namespace WeShop.Web.Controllers
             int num= Convert.ToInt32(Request["count"]);
             shoppingCart.Qty = num;
             shoppingCart.CreateTime = DateTime.Now;
+            shoppingCart.IsChecked = false;
             ShopCarService.Add(shoppingCart);
             return "200";
         }
